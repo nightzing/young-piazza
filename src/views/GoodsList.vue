@@ -140,15 +140,20 @@ import axios from 'axios'
             }
         },
         mounted: function () {
-          this.getList();
+
+           axios.get("./goods").then((result) =>{
+            console.log(result)
+                if(result.status == "0") {
+                console.log(res.result.list)
+                    this.goodsList = res.result.list;
+                } else {
+                     this.goodsList = [];
+                }
+            });
         },
         methods: {
            getList () {
-            axios.get("../../mock/goods.json").then((result) =>{
-                var res = result.data;
-                console.log(res);
-                this.goodsList = res.result;
-            });
+
           },
           showFilterPop () {
             this.filterBy = true;
